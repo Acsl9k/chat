@@ -8,7 +8,7 @@ s.connect(("127.0.0.1",9999))
 def receber():		#A funçao receber() recebe novo array de dados junta a esse->
 					#array a variavel data, limpa o ecra e manda toda a informaçao para o ecra
 	while True:
-		data = s.recv(1024)    #receber mensagem codificada, 
+		data = s.recv(1024)    #receber mensagem codificada,
 				#variavel data contem toda a informaçao dita no chat
 		data = pickle.loads(data)	#encapsular dados
 		print(data)
@@ -20,9 +20,14 @@ def receber():		#A funçao receber() recebe novo array de dados junta a esse->
 def enviar():
 	try:
 		msg = input(">>") #escrever mensagem RAW
-	except msg=='/exit':
+		if msg=='/exit':
+			s.shutdown()
+			s.close()
+			exit()
+	except KeyboardInterrupt:
 		s.shutdown()
 		s.close()
+		exit()
 
 	s.send(msg.encode()) # codificar mensagem
 	time.sleep(0.1) #required line for ">>" to be printed

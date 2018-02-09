@@ -44,7 +44,7 @@ if __name__ == "__main__":
 		serv.serve_forever()	#Listening to incoming requests until shutdown
 	except:
 		serv.shutdown()
-
+		exit()
 
 ## CORRIGIR BUG DE SAIDA NO SERVIDOR
 # porque e que o  servidor recebe username e nao manda para os outros users?
